@@ -1,6 +1,6 @@
 # pgvector-erlang
 
-[pgvector](https://github.com/pgvector/pgvector) support for Erlang
+[pgvector](https://github.com/pgvector/pgvector) examples for Erlang
 
 Supports [epgsql](https://github.com/epgsql/epgsql)
 
