@@ -1,0 +1,22 @@
+name: build
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: 26
+      - uses: ankane/setup-postgres@v1
+        with:
+          database: pgvector_erlang_test
+          dev-files: true
+      - run: |
+          cd /tmp
+          git clone --branch v0.8.0 https://github.com/pgvector/pgvector.git
+          cd pgvector
+          make
+          sudo make install
+      - run: rebar3 escriptize
+      - run: _build/default/bin/example
